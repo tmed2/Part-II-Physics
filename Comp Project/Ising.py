@@ -7,7 +7,7 @@
 #NumPy: 1.9.2
 #SciPy: 0.15.1
 #
-#Only the class is defined, what you do with it is down to you
+#Only the class is defined, what you do with it is up to you
 
 import numpy as np
 from scipy import constants
