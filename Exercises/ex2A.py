@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Written by: Tim Duthie; tmed2; Churchill.
-
 For numerical convenience, we have defined: the graviational field strength, 
 g = 10 ms^-2; the pendulum length, l = 10m; and the pendulum bob mass, m = 1kg.
 A light bar, point mass bob model has been implemented.
