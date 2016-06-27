@@ -402,3 +402,38 @@ def exact_magnetisation(temperatures, J = KB):
                                          temperatures >= ONSANGER_T], 
                                          [mag_func, 0], (J,))
     return m_of_T
+
+###############################################################################
+#Ok, I lied eariler... here is an example of somthing you could do!
+#The normalised magnetic moment is considered as a function of
+#time for a few different temperatures. A random spin initial lattice is used.
+
+print("The moments, as functions of time, are being calculated")
+print("This took about 4 mins on a 3.2GHz core (100% load)")
+print("Start", datetime.datetime.now())
+
+latt1    = SpinLattice(32, 32, 1, 0, 1, KB, 0)
+latt2_2 = SpinLattice(32, 32, 2.2, 0, 1, KB, 0)
+latt2_4 = SpinLattice(32, 32, 2.4, 0, 1, KB, 0)
+latt3    = SpinLattice(32, 32, 3, 0, 1, KB, 0)
+
+dat1     = latt1.advance_time(10000, True)
+dat2_2   = latt2_2.advance_time(10000, True)
+dat2_4   = latt2_4.advance_time(10000, True)
+dat3     = latt3.advance_time(10000, True)
+
+print("End", datetime.datetime.now(), "\n")
+
+plt.figure(4)
+plt.semilogx(dat1[0], dat1[2], label = "1")
+plt.semilogx(dat2_2[0], dat2_2[2], label = "2.2")
+plt.semilogx(dat2_4[0], dat2_4[2], label = "2.4")
+plt.semilogx(dat3[0], dat3[2], label = "3")
+plt.xlabel("Time Step", fontsize=18)
+plt.ylabel("Dimensionless Moment Per Site", fontsize=18)
+plt.title("Magnetic Moment as a Function of Time", fontsize=22)
+plt.legend(loc = "best")
+plt.savefig("Magnetic Moment_t_T.pdf", bbox_inches='tight')
+plt.close()
+
+###############################################################################
